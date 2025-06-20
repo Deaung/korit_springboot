@@ -53,9 +53,10 @@ public class SecurityConfig {
 
 //        security.addFilterBefore(studyFilter, UsernamePasswordAuthenticationFilter.class);
         security.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         // 특정요청 URL 에 대한 권한 설정
         security.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/api/users","/api/users/login", "/api/users/login/status").permitAll();
+            auth.requestMatchers("/api/users","/api/users/login", "/api/users/login/status","/api/users/principal").permitAll();
             auth.anyRequest().authenticated();
         });
 
